@@ -5,16 +5,16 @@ public class PortListener {
 	private DatagramSocket rSocket;
 	private DatagramPacket rPacket;
 	private MessageGUI gui;
-	private DatagramSocket messageEventSocket;
+	private MessageEvent me;
 	
 	boolean isListening = false;
 	
-	PortListener(int port, MessageGUI gui, DatagramSocket m) {
+	PortListener(int port, MessageGUI gui, MessageEvent me) {
 		try {
 			rSocket = new DatagramSocket(port);
 			rPacket = new DatagramPacket(new byte[1024], 1024);
 			this.gui = gui;
-			messageEventSocket = m;
+			this.me = me;
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -34,7 +34,7 @@ public class PortListener {
 			}
 			gui.displayMessage("terminating...");
 			rSocket.close();
-			messageEventSocket.close();
+			me.closeSocket();
 			Thread.sleep(1500);
 			gui.close();
 		}

@@ -42,8 +42,8 @@ public class MessageEvent implements ActionListener {
 		}
 	}
 	
-	public DatagramSocket getSocket() {
-		return sSocket;
+	public void closeSocket() {
+		sSocket.close();
 	}
 
 }

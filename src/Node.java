@@ -24,7 +24,7 @@ public class Node implements Runnable {
 			gui.attachListener(me);
 			
 			//For receiving packets
-			PortListener pl = new PortListener(receivePort, gui, me.getSocket());
+			PortListener pl = new PortListener(receivePort, gui, me);
 			pl.listen();
 		}
 		catch(Exception e) {
